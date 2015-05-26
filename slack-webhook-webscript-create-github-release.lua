@@ -1,3 +1,10 @@
+-- This file is triggered by a Slack Outgoing Webhook
+--   see https://api.slack.com/outgoing-webhooks
+-- Slack detects messages starting with "cut-release", e.g. "cut-release v1.0.1",
+--   which then triggers this script, which creates a GitHub release
+-- Obviously you will need to create an access token and replace it at {your-token};
+--   you will also need to put the right URL to your repo, replacing {owner} and {repo}
+
 local trigger_text = request.form.text
 local tag_name = ""
 for word in string.gmatch(trigger_text, "%S+") do
